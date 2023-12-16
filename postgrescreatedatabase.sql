@@ -1,0 +1,51 @@
+CREATE TABLE auth_user (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(512),
+  email VARCHAR(512),
+  password VARCHAR(512),
+  first_name VARCHAR(512),
+  last_name VARCHAR(512),
+  sso_id VARCHAR(512),
+  action_token VARCHAR(512),
+  last_password_change TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  past_passwords_hash text DEFAULT NULL
+);
+
+CREATE TABLE auth_user_tag_groups (
+  id SERIAL PRIMARY KEY,
+  path VARCHAR(512) DEFAULT NULL,
+  record_id int DEFAULT NULL,
+  FOREIGN KEY (record_id) REFERENCES auth_user (id)
+);
+
+CREATE TABLE py4web_session(
+  id SERIAL PRIMARY KEY,
+  rkey VARCHAR(512) DEFAULT NULL,
+  rvalue text,
+  expiration int DEFAULT NULL,
+  created_on TIMESTAMP DEFAULT NULL,
+  expires_on TIMESTAMP DEFAULT NULL
+);
+
+CREATE TABLE booking (
+  id SERIAL PRIMARY KEY,
+  user_email VARCHAR(512) DEFAULT NULL,
+  Date VARCHAR(512) DEFAULT NULL,
+  Type VARCHAR(512) DEFAULT NULL,
+  Vehicle VARCHAR(512) DEFAULT NULL
+);
+
+CREATE TABLE user_info(
+  id SERIAL PRIMARY KEY,
+  user_email VARCHAR(512) DEFAULT NULL,
+  address VARCHAR(512) DEFAULT NULL,
+  phone VARCHAR(512) DEFAULT NULL
+);
+
+CREATE TABLE cars (
+  id SERIAL PRIMARY KEY,
+  user_email VARCHAR(512) DEFAULT NULL,
+  Make VARCHAR(512) DEFAULT NULL,
+  Model VARCHAR(512) DEFAULT NULL,
+  Year VARCHAR(512) DEFAULT NULL
+);
